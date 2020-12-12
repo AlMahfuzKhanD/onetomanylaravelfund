@@ -30,4 +30,15 @@ $user = User::findOrFail(1);
     }
 });
 
-Route::get
+Route::get('/update', function(){
+    $user = User::findOrFail(1);
+
+    $user->posts()->whereId(1)->update(['title'=>' title 3','body'=>'body 3']);
+    
+});
+
+Route::get('/delete', function(){
+    $user = User::findOrFail(1);
+
+    $user->posts()->whereId(1)->delete();
+});
