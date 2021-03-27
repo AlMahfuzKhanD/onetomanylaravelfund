@@ -17,28 +17,51 @@ Route::get('/', function () {
 });
 
 
-Route::get('/create',function(){
- $user = User::findOrFail(1);
-$post = new Post(['title'=>'title 2','body'=>'content 2']);
-$user->posts()->save($post);
+// Route::get('/create',function(){
+//  $user = User::findOrFail(1);
+// $post = new Post(['title'=>'title 2','body'=>'content 2']);
+// $user->posts()->save($post);
+// });
+
+// Route::get('/read', function(){
+// $user = User::findOrFail(1);
+//     foreach($user->posts as $post){
+//         echo $post->body . "<br>";
+//     }
+// });
+
+// Route::get('/update', function(){
+//     $user = User::findOrFail(1);
+
+//     $user->posts()->whereId(1)->update(['title'=>' title 3','body'=>'body 3']);
+    
+// });
+
+// Route::get('/delete', function(){
+//     $user = User::findOrFail(1);
+
+//     $user->posts()->whereId(1)->delete();
+// });
+
+Route::get('/create', function(){
+    $user = User::findOrFail(1);
+    $post = new Post(['title'=>'new title', 'body'=>'content']);
+    $user->posts()->save($post);
 });
 
 Route::get('/read', function(){
-$user = User::findOrFail(1);
+    $user = User::findOrFail(1);
     foreach($user->posts as $post){
-        echo $post->body . "<br>";
+        echo $post->title;
     }
 });
 
 Route::get('/update', function(){
     $user = User::findOrFail(1);
-
-    $user->posts()->whereId(1)->update(['title'=>' title 3','body'=>'body 3']);
-    
+    $user->posts()->whereId(2)->update(['title'=>'updated','body'=>'updated body']);
 });
 
 Route::get('/delete', function(){
     $user = User::findOrFail(1);
-
-    $user->posts()->whereId(1)->delete();
+    $user->posts()->whereId(2)->delete();
 });
